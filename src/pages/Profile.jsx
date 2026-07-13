@@ -33,7 +33,7 @@ export default function Profile() {
     load();
   }, []);
 
-  const isCreator = user?.role === "creator";
+  const isCreator = user?.role === "creator" || user?.role === "admin";
   const initials = user?.full_name?.split(" ").map(n => n[0]).join("").toUpperCase() || "U";
 
   const handleAvatarUpload = async (e) => {

@@ -28,7 +28,7 @@ export default function Upload() {
     const load = async () => {
       try {
         const me = await base44.auth.me();
-        if (me?.role !== "creator") {
+        if (me?.role !== "creator" && me?.role !== "admin") {
           navigate("/", { replace: true });
           return;
         }

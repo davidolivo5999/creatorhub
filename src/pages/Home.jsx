@@ -29,7 +29,7 @@ export default function Home() {
     );
   }
 
-  const isCreator = user?.role === "creator";
+  const isCreator = user?.role === "creator" || user?.role === "admin";
   const initials = user?.full_name?.split(" ").map(n => n[0]).join("").toUpperCase() || "U";
 
   return (
