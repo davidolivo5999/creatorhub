@@ -1,0 +1,19 @@
+{
+  "name": "WatchHistory",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "video_id": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_id",
+    "video_id"
+  ]
+}

@@ -14,6 +14,25 @@
     "creator_name": {
       "type": "string"
     },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Music",
+        "Gaming",
+        "Education",
+        "Comedy",
+        "News",
+        "Sports",
+        "Technology",
+        "Lifestyle",
+        "Other"
+      ],
+      "default": "Other"
+    },
+    "view_count": {
+      "type": "number",
+      "default": 0
+    },
     "mux_upload_id": {
       "type": "string"
     },

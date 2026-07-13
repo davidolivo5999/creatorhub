@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Upload, Eye, User, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import VideoFeed from "@/components/home/VideoFeed";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -85,13 +86,11 @@ export default function Home() {
             </div>
           </Link>
 
-          <div className="border border-border rounded-xl p-6 bg-card opacity-60">
-            <div className="w-11 h-11 rounded-lg bg-muted flex items-center justify-center mb-4">
-              <Eye className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <h3 className="font-semibold font-heading mb-1">Browse Content</h3>
-            <p className="text-sm text-muted-foreground">Coming soon — discover content from creators.</p>
-          </div>
+        </div>
+
+        <div className="mt-12">
+          <h3 className="text-xl font-semibold tracking-tight font-heading mb-5">For You</h3>
+          <VideoFeed user={user} />
         </div>
 
         {/* Role badge */}

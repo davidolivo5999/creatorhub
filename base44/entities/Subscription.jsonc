@@ -1,0 +1,19 @@
+{
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "subscriber_id": {
+      "type": "string"
+    },
+    "creator_id": {
+      "type": "string"
+    },
+    "creator_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "subscriber_id",
+    "creator_id"
+  ]
+}

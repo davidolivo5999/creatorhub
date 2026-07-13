@@ -4,6 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import ReactionButtons from "@/components/watch/ReactionButtons";
 import CommentSection from "@/components/watch/CommentSection";
+import SubscribeButton from "@/components/watch/SubscribeButton";
 
 export default function Watch() {
   const { id } = useParams();
@@ -20,6 +21,22 @@ export default function Watch() {
     };
     load();
   }, [id]);
+
+  useEffect(() => {
+    if (!video) return;
+    const recordView = async () => {
+      await base44.entities.Video.update(video.id, { view_count: (video.view_count || 0) + 1 });
+      if (user) {
+        await base44.entities.WatchHistory.create({
+          user_id: user.id,
+          video_id: video.id,
+          category: video.category || "Other",
+        });
+      }
+    };
+    recordView();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [video?.id]);
 
   if (loading) {
     return (
@@ -67,7 +84,10 @@ export default function Watch() {
 
         <div>
           <h2 className="text-xl font-semibold font-heading">{video.title}</h2>
-          {video.creator_name && <p className="text-sm text-muted-foreground mt-1">{video.creator_name}</p>}
+          <div className="flex items-center justify-between mt-1">
+            {video.creator_name && <p className="text-sm text-muted-foreground">{video.creator_name}</p>}
+            <SubscribeButton user={user} creatorId={video.created_by_id} creatorName={video.creator_name} />
+          </div>
           {video.description && <p className="text-sm mt-3 whitespace-pre-wrap">{video.description}</p>}
         </div>
 

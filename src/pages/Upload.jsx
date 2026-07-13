@@ -6,7 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
+
+const CATEGORIES = ["Music", "Gaming", "Education", "Comedy", "News", "Sports", "Technology", "Lifestyle", "Other"];
 import VideoStatusList from "@/components/upload/VideoStatusList";
 
 export default function Upload() {
@@ -14,6 +17,7 @@ export default function Upload() {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("Other");
   const [submitting, setSubmitting] = useState(false);
   const [videos, setVideos] = useState([]);
   const navigate = useNavigate();
@@ -46,11 +50,12 @@ export default function Upload() {
     setSubmitting(true);
     try {
       const { file_url } = await base44.integrations.Core.UploadFile({ file });
-      await base44.functions.invoke("muxCreateUpload", { title, description, file_url });
+      await base44.functions.invoke("muxCreateUpload", { title, description, file_url, category });
       toast({ title: "Upload started", description: "Processing your video now." });
       setFile(null);
       setTitle("");
       setDescription("");
+      setCategory("Other");
       e.target.reset?.();
       await loadVideos();
     } catch (err) {
@@ -123,6 +128,22 @@ export default function Upload() {
               rows={4}
               className="resize-none"
             />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="category">Category</Label>
+            <Select value={category} onValueChange={setCategory}>
+              <SelectTrigger id="category">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {CATEGORIES.map((c) => (
+                  <SelectItem key={c} value={c}>
+                    {c}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <Button type="submit" size="lg" className="w-full gap-2" disabled={submitting || !file || !title}>

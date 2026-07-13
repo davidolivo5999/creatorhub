@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Only creators can upload videos' }, { status: 403 });
     }
 
-    const { title, description, file_url } = await req.json();
+    const { title, description, file_url, category } = await req.json();
     if (!title || !file_url) {
       return Response.json({ error: 'title and file_url are required' }, { status: 400 });
     }
@@ -43,6 +43,7 @@ Deno.serve(async (req) => {
       description: description || '',
       file_url,
       creator_name: user.full_name || '',
+      category: category || 'Other',
       mux_asset_id: asset.id,
       playback_id: playbackId,
       status: asset.status === 'ready' ? 'ready' : 'processing',
