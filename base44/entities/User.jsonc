@@ -1,0 +1,26 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "creator",
+        "viewer"
+      ],
+      "default": "viewer"
+    },
+    "channel_name": {
+      "type": "string",
+      "title": "Channel Name"
+    },
+    "avatar": {
+      "type": "string",
+      "title": "Avatar URL"
+    },
+    "bio": {
+      "type": "string",
+      "title": "Bio"
+    }
+  }
+}
