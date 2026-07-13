@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { Link } from "react-router-dom";
-import { Upload, Eye, User, Settings } from "lucide-react";
+import { Upload, Eye, User, Settings, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import VideoFeed from "@/components/home/VideoFeed";
@@ -85,6 +85,16 @@ export default function Home() {
               </div>
               <h3 className="font-semibold font-heading mb-1">Your Profile</h3>
               <p className="text-sm text-muted-foreground">View and edit your profile settings.</p>
+            </div>
+          </Link>
+
+          <Link to="/subscriptions" className="group">
+            <div className="border border-border rounded-xl p-6 hover:border-primary/30 hover:shadow-md transition-all bg-card">
+              <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <Bell className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="font-semibold font-heading mb-1">Subscriptions</h3>
+              <p className="text-sm text-muted-foreground">Videos from channels you follow.</p>
             </div>
           </Link>
 
