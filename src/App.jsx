@@ -14,6 +14,7 @@ import ResetPassword from '@/pages/ResetPassword';
 import Home from '@/pages/Home';
 import Upload from '@/pages/Upload';
 import Profile from '@/pages/Profile';
+import Watch from '@/pages/Watch';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -49,6 +50,7 @@ const AuthenticatedApp = () => {
         <Route path="/" element={<Home />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/watch/:id" element={<Watch />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

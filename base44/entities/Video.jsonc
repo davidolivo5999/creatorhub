@@ -11,6 +11,9 @@
     "file_url": {
       "type": "string"
     },
+    "creator_name": {
+      "type": "string"
+    },
     "mux_upload_id": {
       "type": "string"
     },

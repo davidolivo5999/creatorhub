@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 
 const STATUS_CONFIG = {
@@ -20,9 +21,10 @@ export default function VideoStatusList({ videos }) {
           const config = STATUS_CONFIG[video.status] || STATUS_CONFIG.processing;
           const Icon = config.icon;
           return (
-            <div
+            <Link
               key={video.id}
-              className="flex items-center justify-between gap-4 border border-border rounded-xl p-4 bg-card"
+              to={`/watch/${video.id}`}
+              className="flex items-center justify-between gap-4 border border-border rounded-xl p-4 bg-card hover:border-primary/40 transition-colors"
             >
               <div className="min-w-0">
                 <p className="font-medium truncate">{video.title}</p>
@@ -34,7 +36,7 @@ export default function VideoStatusList({ videos }) {
                 <Icon className={`w-3 h-3 ${config.spin ? "animate-spin" : ""}`} />
                 {config.label}
               </span>
-            </div>
+            </Link>
           );
         })}
       </div>

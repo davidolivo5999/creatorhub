@@ -42,6 +42,7 @@ Deno.serve(async (req) => {
       title,
       description: description || '',
       file_url,
+      creator_name: user.full_name || '',
       mux_asset_id: asset.id,
       playback_id: playbackId,
       status: asset.status === 'ready' ? 'ready' : 'processing',
