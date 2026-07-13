@@ -1,0 +1,26 @@
+{
+  "name": "Notification",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "video_id": {
+      "type": "string"
+    },
+    "video_title": {
+      "type": "string"
+    },
+    "creator_name": {
+      "type": "string"
+    },
+    "read": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "user_id",
+    "video_id"
+  ]
+}

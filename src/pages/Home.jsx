@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import VideoFeed from "@/components/home/VideoFeed";
 import SearchBar from "@/components/search/SearchBar";
+import NotificationBell from "@/components/notifications/NotificationBell";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -42,6 +43,7 @@ export default function Home() {
           <h1 className="text-lg font-semibold tracking-tight font-heading">Dashboard</h1>
           <SearchBar className="flex-1 max-w-md mx-6 hidden sm:block" />
           <div className="flex items-center gap-3">
+            <NotificationBell user={user} />
             <Link to="/profile">
               <Avatar className="w-9 h-9 cursor-pointer ring-2 ring-border hover:ring-primary/30 transition-all">
                 <AvatarImage src={user?.avatar} />

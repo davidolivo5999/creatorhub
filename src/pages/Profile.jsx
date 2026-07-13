@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 
 export default function Profile() {
@@ -17,6 +18,8 @@ export default function Profile() {
   const [avatar, setAvatar] = useState("");
   const [bio, setBio] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [notificationPref, setNotificationPref] = useState("all");
+  const [savingPref, setSavingPref] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -26,6 +29,7 @@ export default function Profile() {
         setChannelName(me?.channel_name || "");
         setAvatar(me?.avatar || "");
         setBio(me?.bio || "");
+        setNotificationPref(me?.notification_pref || "all");
       } finally {
         setLoading(false);
       }
@@ -59,6 +63,19 @@ export default function Profile() {
       toast({ title: "Failed to save", variant: "destructive" });
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleSaveNotificationPref = async (value) => {
+    setNotificationPref(value);
+    setSavingPref(true);
+    try {
+      await base44.auth.updateMe({ notification_pref: value });
+      toast({ title: "Notification preference updated" });
+    } catch {
+      toast({ title: "Failed to save", variant: "destructive" });
+    } finally {
+      setSavingPref(false);
     }
   };
 
@@ -157,6 +174,20 @@ export default function Profile() {
             </Button>
           </div>
         )}
+
+        <div className={`space-y-2 ${isCreator ? "mt-8" : ""}`}>
+          <Label htmlFor="notification_pref">Notifications</Label>
+          <Select value={notificationPref} onValueChange={handleSaveNotificationPref} disabled={savingPref}>
+            <SelectTrigger id="notification_pref">
+              <SelectValue placeholder="Select preference" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All new videos from subscriptions</SelectItem>
+              <SelectItem value="personalized">Personalized (based on watch history)</SelectItem>
+              <SelectItem value="none">None</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </main>
     </div>
   );

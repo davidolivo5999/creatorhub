@@ -38,10 +38,36 @@ Deno.serve(async (req) => {
     if (type === 'video.asset.ready' && data?.id) {
       const matches = await base44.asServiceRole.entities.Video.filter({ mux_asset_id: data.id });
       if (matches.length > 0) {
-        await base44.asServiceRole.entities.Video.update(matches[0].id, {
+        const video = matches[0];
+        await base44.asServiceRole.entities.Video.update(video.id, {
           status: 'ready',
-          playback_id: data.playback_ids?.[0]?.id || matches[0].playback_id || '',
+          playback_id: data.playback_ids?.[0]?.id || video.playback_id || '',
         });
+
+        const subscriptions = await base44.asServiceRole.entities.Subscription.filter({ creator_id: video.created_by_id });
+        const notificationsToCreate = [];
+        for (const sub of subscriptions) {
+          const subscriberUsers = await base44.asServiceRole.entities.User.filter({ id: sub.subscriber_id });
+          const subscriber = subscriberUsers[0];
+          const pref = subscriber?.notification_pref || 'all';
+          if (pref === 'none') continue;
+          if (pref === 'personalized') {
+            const history = await base44.asServiceRole.entities.WatchHistory.filter({
+              user_id: sub.subscriber_id,
+              category: video.category,
+            });
+            if (history.length === 0) continue;
+          }
+          notificationsToCreate.push({
+            user_id: sub.subscriber_id,
+            video_id: video.id,
+            video_title: video.title,
+            creator_name: video.creator_name || '',
+          });
+        }
+        if (notificationsToCreate.length > 0) {
+          await base44.asServiceRole.entities.Notification.bulkCreate(notificationsToCreate);
+        }
       }
     }
 

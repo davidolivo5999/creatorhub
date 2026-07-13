@@ -21,6 +21,16 @@
     "bio": {
       "type": "string",
       "title": "Bio"
+    },
+    "notification_pref": {
+      "type": "string",
+      "enum": [
+        "all",
+        "personalized",
+        "none"
+      ],
+      "default": "all",
+      "title": "Notification Preference"
     }
   }
 }
