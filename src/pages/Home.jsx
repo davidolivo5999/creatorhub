@@ -5,6 +5,7 @@ import { Upload, Eye, User, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import VideoFeed from "@/components/home/VideoFeed";
+import SearchBar from "@/components/search/SearchBar";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -39,6 +40,7 @@ export default function Home() {
       <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <h1 className="text-lg font-semibold tracking-tight font-heading">Dashboard</h1>
+          <SearchBar className="flex-1 max-w-md mx-6 hidden sm:block" />
           <div className="flex items-center gap-3">
             <Link to="/profile">
               <Avatar className="w-9 h-9 cursor-pointer ring-2 ring-border hover:ring-primary/30 transition-all">
