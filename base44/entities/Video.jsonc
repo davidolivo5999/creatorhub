@@ -1,0 +1,36 @@
+{
+  "name": "Video",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "file_url": {
+      "type": "string"
+    },
+    "mux_upload_id": {
+      "type": "string"
+    },
+    "mux_asset_id": {
+      "type": "string"
+    },
+    "playback_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "processing",
+        "ready",
+        "error"
+      ],
+      "default": "processing"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}
