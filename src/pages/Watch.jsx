@@ -5,6 +5,7 @@ import { ArrowLeft, Loader2 } from "lucide-react";
 import ReactionButtons from "@/components/watch/ReactionButtons";
 import CommentSection from "@/components/watch/CommentSection";
 import SubscribeButton from "@/components/watch/SubscribeButton";
+import LiveChatPanel from "@/components/watch/LiveChatPanel";
 
 export default function Watch() {
   const { id } = useParams();
@@ -92,6 +93,8 @@ export default function Watch() {
         </div>
 
         <ReactionButtons videoId={video.id} user={user} canSeeDislikes={isCreatorOrAdmin} />
+
+        <LiveChatPanel videoId={video.id} user={user} />
 
         <CommentSection videoId={video.id} user={user} isCreatorOrAdmin={isCreatorOrAdmin} />
       </main>
