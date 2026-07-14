@@ -31,7 +31,7 @@ This is a prototype, not YouTube's actual infrastructure — things like global 
 
 ## Documentation
 
-The PRD this project was built from lives in [`docs/youtube-prd.md`](docs/youtube-prd.md) — or [download the PDF directly](https://media.base44.com/files/public/6a5500d012a01d0d24aac9dd/198abf546_youtube_20.pdf).
+The PRD this project was built from lives in [`docs/youtube-prd.md`](docs/youtube-prd.md) — or [download the PDF directly](https://media.base44.com/files/public/6a5500d012a01d0d24aac9dd/f190dd230_youtube20-2.pdf).
 
 ## Running it locally
 
