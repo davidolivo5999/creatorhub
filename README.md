@@ -29,6 +29,10 @@ CreatorHub lets creators upload videos that are transcoded and streamed with rea
 
 This is a prototype, not YouTube's actual infrastructure — things like global CDN edge caching, sub-400ms playback start at scale, and ingesting thousands of hours of video per minute are data-center-scale engineering problems that are intentionally out of scope here. The goal was to replicate the *product experience*, not the infrastructure scale.
 
+## Documentation
+
+The PRD this project was built from lives in [`docs/youtube-prd.md`](docs/youtube-prd.md) — or [download the PDF directly](https://media.base44.com/files/public/6a5500d012a01d0d24aac9dd/198abf546_youtube_20.pdf).
+
 ## Running it locally
 
 This repo is generated from a [Base44](https://base44.com) app. To run or edit it locally:
